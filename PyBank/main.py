@@ -1,4 +1,4 @@
-# import stuff
+# import modules
 import os
 import csv
 
@@ -15,19 +15,22 @@ with open(file_path) as csvfile:
     profits = []
     changes = []
 
-    # loop through data
+    # loop through rows in csv file while populating lists
     for row in csvreader:
         dates.append(row[0])
         profits.append(int(row[1]))
 
+        # a neccesary check since change cannot be calculated for first month
         if len(profits) > 1:
-            changes.append(profits[-1] - profits[-2])
+            changes.append(profits[-1] - profits[-2])   # change = current - previous profits
 
 # calculate average of changes
 avg_change = sum(changes)/len(changes)
-# find date of greatest increase/decrease
-index = changes.index(max(changes)) + 1
+
+# find dates of greatest increase/decrease
+index = changes.index(max(changes)) + 1     # +1 offset since changes list is shorter by one
 max_change_date = dates[index]
+
 index = changes.index(min(changes)) + 1
 min_change_date = dates[index]
 
@@ -48,6 +51,6 @@ with open(output_path,"r") as output_file:
     print("\n")
 
     for line in lines:
-        print(line[:-1])
+        print(line[:-1])    # print entire line except the return (\n)
 
     print("\n")
