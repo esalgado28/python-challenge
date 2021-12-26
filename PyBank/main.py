@@ -34,23 +34,24 @@ max_change_date = dates[index]
 index = changes.index(min(changes)) + 1
 min_change_date = dates[index]
 
+# make list to store lines to print out
+res_lines = []
+res_lines.append("Financial Analysis")
+res_lines.append("----------------------------")
+res_lines.append(f"Total Months: {len(dates)}")
+res_lines.append(f"Total: ${sum(profits)}")
+res_lines.append(f"Average Change: ${round(avg_change, 2)}")
+res_lines.append(f"Greatest Increase in Profits: {max_change_date} (${max(changes)})")
+res_lines.append(f"Greatest Decrease in Profits: {min_change_date} (${min(changes)})")
+
+# print out to terminal
+print("\n")
+for line in res_lines:
+    print(line)
+print("\n")
+
 # print results to text file
 output_path = os.path.join("analysis","results.txt")
 with open(output_path,"w") as output_file:
-    output_file.write("Financial Analysis\n") 
-    output_file.write("----------------------------\n")
-    output_file.write(f"Total Months: {len(dates)}\n")
-    output_file.write(f"Total: ${sum(profits)}\n")
-    output_file.write(f"Average Change: ${round(avg_change, 2)}\n")
-    output_file.write(f"Greatest Increase in Profits: {max_change_date} (${max(changes)})\n")
-    output_file.write(f"Greatest Decrease in Profits: {min_change_date} (${min(changes)})\n")
-
-# read from file and print to terminal
-with open(output_path,"r") as output_file:
-    lines = output_file.readlines()
-    print("\n")
-
-    for line in lines:
-        print(line[:-1])    # print entire line except the return (\n)
-
-    print("\n")
+    for line in res_lines:
+        output_file.write(line + "\n")
