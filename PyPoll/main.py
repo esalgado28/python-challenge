@@ -30,42 +30,42 @@ total = sum(candidates.values())
 # initialize variable to store max votes percentage
 max_percent = 0
 
+# create list to store lines to print out
+res_lines = []
+res_lines.append("Election Results")
+res_lines.append("---------------------------")
+res_lines.append(f"Total Votes: {total}")
+res_lines.append("---------------------------")
+
+# loop through generated candidates set
+for candidate in candidates:
+    # calculate percentage of total votes
+    percent = candidates[candidate]/total*100
+
+    # update winner and greatest percentage found
+    if percent > max_percent:
+        max_percent = percent
+        winner = candidate
+    
+    # round to 2 decimal places for cleanliness
+    percent = round(percent, 2)
+
+    # print row for candidate along with votes and % of total
+    res_lines.append(f"{candidate}: {percent}% ({candidates[candidate]})")
+
+# print out winner
+res_lines.append("---------------------------")
+res_lines.append(f"Winner: {winner}")
+res_lines.append("---------------------------")
+
+# print out to terminal
+print("\n")
+for line in res_lines:
+    print(line)
+print("\n")
+
 # print results to text file
 output_path = os.path.join("analysis","results.txt")
 with open(output_path,"w") as output_file:
-
-    output_file.write("Election Results\n")
-    output_file.write("---------------------------\n")
-    output_file.write(f"Total Votes: {total}\n")
-    output_file.write("---------------------------\n")
-
-    # loop through generated candidates set
-    for candidate in candidates:
-        # calculate percentage of total votes
-        percent = candidates[candidate]/total*100
-
-        # update winner and greatest percentage found
-        if percent > max_percent:
-            max_percent = percent
-            winner = candidate
-        
-        # round to 2 decimal places for cleanliness
-        percent = round(percent, 2)
-
-        # print row for candidate along with votes and % of total
-        output_file.write(f"{candidate}: {percent}% ({candidates[candidate]})\n")
-
-    # print out winner
-    output_file.write("---------------------------\n")
-    output_file.write(f"Winner: {winner}\n")
-    output_file.write("---------------------------\n")
-
-# read text file and print to terminal
-with open(output_path,'r') as output_file:
-
-    lines = output_file.readlines()
-
-    print("\n")
-
-    for line in lines:
-        print(line[:-1])
+    for line in res_lines:
+        output_file.write(line + "\n")
