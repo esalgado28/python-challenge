@@ -3,10 +3,9 @@ import os
 import csv
 
 # read csv file
-file_path = os.path.join("Resources","election_data.csv")
-
+file_path = os.path.join("Resources", "election_data.csv")
 with open(file_path) as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
+    csvreader = csv.reader(csvfile, delimiter = ',')
 
     # extract header
     header = next(csvreader)
@@ -65,7 +64,7 @@ for line in res_lines:
 print("\n")
 
 # print results to text file
-output_path = os.path.join("analysis","results.txt")
-with open(output_path,"w") as output_file:
+output_path = os.path.join("analysis", "results.txt")
+with open(output_path, "w") as output_file:
     for line in res_lines:
         output_file.write(line + "\n")
