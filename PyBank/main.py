@@ -3,9 +3,9 @@ import os
 import csv
 
 # read csv file
-file_path = os.path.join("Resources","budget_data.csv")
+file_path = os.path.join("Resources", "budget_data.csv")
 with open(file_path) as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
+    csvreader = csv.reader(csvfile, delimiter = ',')
     
     # extract header
     header = next(csvreader)
@@ -39,7 +39,7 @@ res_lines = []
 res_lines.append("Financial Analysis")
 res_lines.append("----------------------------")
 res_lines.append(f"Total Months: {len(dates)}")
-res_lines.append(f"Total: ${sum(profits)}")
+res_lines.append(f"Net Total: ${sum(profits)}")
 res_lines.append(f"Average Change: ${round(avg_change, 2)}")
 res_lines.append(f"Greatest Increase in Profits: {max_change_date} (${max(changes)})")
 res_lines.append(f"Greatest Decrease in Profits: {min_change_date} (${min(changes)})")
@@ -51,7 +51,7 @@ for line in res_lines:
 print("\n")
 
 # print results to text file
-output_path = os.path.join("analysis","results.txt")
-with open(output_path,"w") as output_file:
+output_path = os.path.join("analysis", "results.txt")
+with open(output_path, "w") as output_file:
     for line in res_lines:
         output_file.write(line + "\n")
