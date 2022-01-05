@@ -1,6 +1,6 @@
 # python-challenge
 Eddy's folder for HW #3: Python Challenge
-- The appropriate files for each challenge is in their respective folder as per the directions.
+- The appropriate files for each challenge are in their respective folders as per the directions.
 - Current working directory must be the same as the script file's directory for it to function correctly.
 
 PyBank Challenge
